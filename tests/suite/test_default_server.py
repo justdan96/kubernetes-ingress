@@ -1,7 +1,7 @@
 from ssl import SSLError
 
 import pytest
-from settings import BASEDIR, DEPLOYMENTS, TEST_DATA
+from settings import BASEDIR, TEST_DATA
 from suite.utils.resources_utils import (
     create_secret_from_yaml,
     delete_secret,
