@@ -70,7 +70,7 @@ spec:
     seccompProfile:
       type: RuntimeDefault
   containers:
-  - image: private-registry.nginx.com/nginx-ic/nginx-plus-ingress:3.2.1
+  - image: private-registry.nginx.com/nginx-ic/nginx-plus-ingress:3.3.0
     imagePullPolicy: IfNotPresent
     name: nginx-plus-ingress
 ```
@@ -108,7 +108,7 @@ image:
   repository: private-registry.nginx.com/nginx-ic/nginx-plus-ingress
 
   ## The version tag
-  tag: 3.2.1
+  tag: 3.3.0
 
   serviceAccount:
     ## The annotations of the service account of the Ingress Controller pods.
@@ -138,7 +138,7 @@ If the namespace does not exist, `--create-namespace` will create it. Using `-f 
 If you want to install NGINX Ingress Controller using the charts method, the following is an example of using the command line to pass the required arguments using the `set` parameter.
 
 ```shell
-helm install my-release -n nginx-ingress oci://ghcr.io/nginxinc/charts/nginx-ingress --version 0.18.0 --set controller.image.repository=private-registry.nginx.com/nginx-ic/nginx-plus-ingress --set controller.image.tag=3.2.1 --set controller.nginxplus=true --set controller.serviceAccount.imagePullSecretName=regcred
+helm install my-release -n nginx-ingress oci://ghcr.io/nginxinc/charts/nginx-ingress --version 0.18.0 --set controller.image.repository=private-registry.nginx.com/nginx-ic/nginx-plus-ingress --set controller.image.tag=3.3.0 --set controller.nginxplus=true --set controller.serviceAccount.imagePullSecretName=regcred
 ```
 
 Checking the validation that the .crts/key and .jwt are able to successfully authenticate to the repo to pull NGINX Ingress controller images:
