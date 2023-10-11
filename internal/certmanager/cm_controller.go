@@ -36,6 +36,7 @@ import (
 	"k8s.io/client-go/tools/record"
 	"k8s.io/client-go/util/workqueue"
 
+	apierrors "k8s.io/apimachinery/pkg/api/errors"
 	conf_v1 "github.com/nginxinc/kubernetes-ingress/pkg/apis/configuration/v1"
 	k8s_nginx "github.com/nginxinc/kubernetes-ingress/pkg/client/clientset/versioned"
 	vsinformers "github.com/nginxinc/kubernetes-ingress/pkg/client/informers/externalversions"
@@ -145,6 +146,11 @@ func (c *CmController) processItem(ctx context.Context, key string) error {
 
 	var vs *conf_v1.VirtualServer
 	vs, err = nsi.vsLister.VirtualServers(namespace).Get(name)
+
+	// VS has been deleted
+	if apierrors.IsNotFound(err) {
+		return nil
+	}
 
 	if err != nil {
 		return err
